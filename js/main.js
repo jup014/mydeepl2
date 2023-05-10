@@ -15,6 +15,11 @@ document.getElementById("translateButton").addEventListener("click", function() 
         ? originalText.split('\n').filter(Boolean)
         : [originalText];
 
+    // Create an empty array of translated paragraphs as the same length as the original paragraphs
+    var translatedParagraphs = new Array(paragraphs.length);
+    // Initialize all elements of the array to empty string
+    translatedParagraphs.fill('');
+
     // Translate each paragraph and concatenate the result if concatenate is true
     var translatedText = '';
 
@@ -34,14 +39,29 @@ document.getElementById("translateButton").addEventListener("click", function() 
         .then(data => {
             // Get the translated text
             var result = data['translations'][0]['text'];
+            // Add the translated text to the array of translated paragraphs
+            translatedParagraphs[index] = result;
 
-            // Concatenate the translated text with the original text
+            // Form a concatenated, translated text with the original text
             if(concatenate){
-                // Add the original text and the translated text to the textarea
-                translatedText += `${paragraphs[index]}\n\n${result}\n\n`;
+                translatedText = '';
+                if (translateParagraph){
+                    // Form a concatenated, translated text with the original text
+                    for (let i = 0; i < translatedParagraphs.length; i++) {
+                        translatedText += `${paragraphs[i]}\n\n${translatedParagraphs[i]}\n\n`;
+                    }
+                } else {
+                    // Form a concatenated text, all the original texts come first, then all the translated texts come next
+                    for (let i = 0; i < paragraphs.length; i++) {
+                        translatedText += `${paragraphs[i]}\n\n`;
+                    }
+                    for (let i = 0; i < translatedParagraphs.length; i++) {
+                        translatedText += `${translatedParagraphs[i]}\n\n`;
+                    }
+                }
             }else{
-                // Add the translated text to the textarea
-                translatedText += `${result}\n\n`;
+                // Form a translated text with the original text
+                translatedText = result;
             }
             // Add the translated text to the div element. Wrap each paragraph with <p> tag
             document.getElementById("translatedText").innerHTML = translatedText.split('\n').filter(Boolean).map((paragraph) => `<p>${paragraph}</p>`).join('');

@@ -43,13 +43,14 @@ document.getElementById("translateButton").addEventListener("click", function() 
                 // Add the translated text to the textarea
                 translatedText += `${result}\n\n`;
             }
-            // Add the translated text to the textarea
-            document.getElementById("translatedText").value = translatedText;
+            // Add the translated text to the div element. Wrap each paragraph with <p> tag
+            document.getElementById("translatedText").innerHTML = translatedText.split('\n').filter(Boolean).map((paragraph) => `<p>${paragraph}</p>`).join('');
             // Copy the translated text to the clipboard
             navigator.clipboard.writeText(translatedText);
         })
         .catch((error) => {
             console.error('Error:', error);
+
         });
     });
 });

@@ -1,3 +1,9 @@
+// Run this if the original text are changed
+document.getElementById("originalText").addEventListener("input", function() {
+    // Count the number of characters in the original text, then change the labelForOriginalText to "Original Text: [number of characters] characters"
+    document.getElementById("labelForOriginalText").innerHTML = `Original Text: ${this.value.length} characters`;
+});
+
 // 
 // Description:
 //  - This file contains the main logic of the extension.

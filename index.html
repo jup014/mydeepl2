@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My DeepL</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-3">My DeepL</h1>
+
+        <div class="form-group">
+            <label for="apiKey">DeepL API Key</label>
+            <input type="text" class="form-control" id="apiKey">
+        </div>
+
+        <div class="form-group">
+            <label for="originalText">Original Text</label>
+            <textarea class="form-control" id="originalText" rows="3">Hello World</textarea>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="concatenateCheckbox">
+            <label class="form-check-label" for="concatenateCheckbox">
+                Concatenate the translation after the original
+            </label>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="translateParagraphCheckbox" disabled>
+            <label class="form-check-label" for="translateParagraphCheckbox">
+                Translate paragraph by paragraph
+            </label>
+        </div>
+
+        <button class="btn btn-primary my-3" id="translateButton">Translate</button>
+
+        <div class="form-group">
+            <label for="translatedText">Translated Text</label>
+            <textarea class="form-control" id="translatedText" rows="3"></textarea>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
